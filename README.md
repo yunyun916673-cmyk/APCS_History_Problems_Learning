@@ -1,0 +1,2 @@
+# APCS_History_Problems_Learning
+紀錄APCS歷屆試題練習過程，解題思路與演算法之學習歷程。
