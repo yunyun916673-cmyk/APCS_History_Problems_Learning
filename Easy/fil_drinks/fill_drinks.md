@@ -42,6 +42,7 @@ Sample Input 3
 Sample Output 3
 
 10
+
 # 裝飲料
 
 ## 題目想法
