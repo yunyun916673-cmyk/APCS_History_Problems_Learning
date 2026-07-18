@@ -43,7 +43,8 @@ int main()
     {
         for (int j=0;j<C;j++)
         {
-            cout<<grid[i][j]<<" ";
+            cout<<grid[i][j];
+            if (j!=C-1) cout<<" ";
         }
         cout<<"\n";
     }
