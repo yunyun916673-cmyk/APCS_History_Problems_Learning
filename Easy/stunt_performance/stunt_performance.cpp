@@ -16,10 +16,10 @@ int main()
     for (ll i=1;i<n;i++)
     {
         if (buil[i]<buil[i-1]）
-{
-    cnt++;
-    ans=max(ans,cnt);
-}
+    {
+        cnt++;
+        ans=max(ans,cnt);
+    }
         else cnt=1;
     }
     cout<<ans;
