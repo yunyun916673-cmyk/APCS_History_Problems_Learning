@@ -15,9 +15,12 @@ int main()
     ll ans=1;
     for (ll i=1;i<n;i++)
     {
-        if (buil[i]<buil[i-1]) cnt++;
+        if (buil[i]<buil[i-1]）
+{
+    cnt++;
+    ans=max(ans,cnt);
+}
         else cnt=1;
-        ans=max(ans,cnt);
     }
     cout<<ans;
     return 0;
