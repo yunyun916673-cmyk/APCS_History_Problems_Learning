@@ -1,0 +1,109 @@
+import sys
+from collections import deque
+input=sys.stdin.readline
+m,n,q=map(int,input().split())
+grid,bombs=[],[]
+nums=[[-1]*n for _ in range(m)]
+for i in range(m):
+	grid.append(list(map(int,input().split())))
+	for j in range(n):
+		if grid[i][j]==-2:
+			sr,sc=i,j
+		elif grid[i][j]>0:
+			bombs.append((i,j))
+bsz=len(bombs)
+cnt=[[] for _ in range(bsz+1)]
+dr,dc=[0,1,0,-1],[1,0,-1,0]
+def get_cnt(br,bc,rad,pos):
+	spread=deque()
+	viscell=[[False]*n for _ in range(m)]
+	spread.append((br,bc))
+	viscell[br][bc]=True
+	level=0
+	while spread:
+		sz=len(spread)
+		for _ in range(sz):
+			r,c=spread.popleft()
+			cnt[pos].append((r,c))
+			for i in range(4):
+				nr,nc=r+dr[i],c+dc[i]
+				if nr<0 or nc<0 or nr>=m or nc>=n:
+					continue
+				if grid[nr][nc]==-1:
+					continue
+				if level+1>rad:
+					continue
+				if viscell[nr][nc]:
+					continue
+				viscell[nr][nc]=True
+				spread.append((nr,nc))
+		level+=1
+	return
+for pos in range(bsz):
+	br,bc=bombs[pos][0],bombs[pos][1]
+	nums[br][bc]=pos
+	get_cnt(br,bc,grid[br][bc],pos)
+temp=deque()
+base=[[-1]*n for _ in range(m)]
+temp.append((sr,sc))
+level=0
+base[sr][sc]=level
+while temp:
+	sz=len(temp)
+	for _ in range(sz):
+		tr,tc=temp.popleft()
+		for i in range(4):
+			nr,nc=tr+dr[i],tc+dc[i]
+			if nr<0 or nc<0 or nr>=m or nc>=n:
+				continue
+			if grid[nr][nc]==-1:
+				continue
+			if base[nr][nc]!=-1:
+				continue
+			base[nr][nc]=level+1
+			temp.append((nr,nc))
+	level+=1
+def check(rad):
+	global sr,sc,grid,q,dr,dc
+	temp=deque()
+	visited=[[False]*n for _ in range(m)]
+	total=1
+	spread=deque()
+	spread.append((sr,sc))
+	visited[sr][sc]=True
+	while spread:
+		r,c=spread.popleft()
+		for i in range(4):
+			nr,nc=r+dr[i],c+dc[i]
+			if nr<0 or nc<0 or nr>=m or nc>=n:
+				continue
+			if grid[nr][nc]==-1:
+				continue
+			if visited[nr][nc]:
+				continue
+			if base[nr][nc]<=rad:
+				total+=1
+				visited[nr][nc]=True
+				spread.append((nr,nc))
+				if nums[nr][nc]>=0:
+					temp.append((nr,nc))
+	while temp:
+		r,c=temp.popleft()
+		pos=nums[r][c]
+		for tr,tc in cnt[pos]:
+			if not visited[tr][tc]:
+				total+=1
+				visited[tr][tc]=True
+				if nums[tr][tc]>=0:
+					temp.append((tr,tc))
+	return total>=q	
+left,right=1,m*n+1
+ans=right
+while left<=right:
+	mid=(left+right)//2
+	if check(mid):
+		right=mid-1
+		ans=mid
+	else:
+		left=mid+1
+print(ans)
