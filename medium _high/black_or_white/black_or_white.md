@@ -29,7 +29,7 @@ N
 u1 v1 w1  
 u2 v2 w2  
 ⋮  
-uN vN wN
+uN-1 vN-1 wN-1
 
 其中：
 
