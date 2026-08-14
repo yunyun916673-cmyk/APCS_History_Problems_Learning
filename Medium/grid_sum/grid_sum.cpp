@@ -6,14 +6,14 @@ int s,t,n,m,r,total=0,ans=3000;
 vector<vector<int>> A,B;
 void check(int sr,int sc)
 {
-    int cnt=0;
+    int cur=0,cnt=0;
     for (int i=sr;i<sr+s;i++)
     {
         for (int j=sc;j<sc+t;j++)
         {
             if (B[i][j]!=A[i-sr][j-sc])
-                cnt+=abs(A[i-sr][j-sc]-B[i][j]);
-            if (cnt>r) return;
+            {cur++;cnt+=abs(A[i-sr][j-sc]-B[i][j]);}
+            if (cur>r) return;
         }
     }
     total++;ans=min(ans,cnt);return;
