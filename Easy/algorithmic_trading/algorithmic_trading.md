@@ -9,18 +9,17 @@
 - 賣出後沒有持有股票時，若之後價格至少比上一次賣出價格低 `D`，就重新買入。
 - 若最後仍持有股票，則忽略這次尚未完成的交易，不計入成本。
 
-請依照上述交易規則，計算整段價格序列所能得到的**總利潤**。([ZeroJudge](https://zerojudge.tw/ShowProblem?problemid=h081\&utm_source=chatgpt.com "h081. 1. 程式交易 - 高中生程式解題系統"))
+請依照上述交易規則，計算整段價格序列所能得到的**總利潤**。
 
 ## 輸入格式
 
 第一行輸入兩個正整數 `n`、`D`。
 
-接下來輸入 `n` 個正整數，分別表示每個時間點的股票價格。([ZeroJudge](https://zerojudge.tw/ShowProblem?problemid=h081\&utm_source=chatgpt.com "h081. 1. 程式交易 - 高中生程式解題系統"))
+接下來輸入 `n` 個正整數，分別表示每個時間點的股票價格。
 
 ## 輸出格式
 
-輸出依照交易規則完成所有交易後得到的**總利潤**。([ZeroJudge](https://zerojudge.tw/ShowProblem?problemid=h081\&utm_source=chatgpt.com "h081. 1. 程式交易 - 高中生程式解題系統"))
-
+輸出依照交易規則完成所有交易後得到的**總利潤**。
 # 程式交易
 
 ## 題目想法
