@@ -24,15 +24,16 @@ ll F(string S)
     while (pos<sz)
     {
         char ch=S[pos]; pos++;
-        if (ch=='f') {target++;s+=ch;}
-        else if (ch==')') {target--;s+=ch;}
+        if (ch=='f') target++;
+        else if (ch==')') target--;
         else if (ch==','&&target==0LL)
         {
             ll cur=T(s);s="";
             bigg=max(bigg,cur);
             smll=min(smll,cur);
+            continue;
         }
-        else s+=ch;
+        s+=ch;
     }
     ll cur=T(s);s="";
     bigg=max(bigg,cur);
@@ -46,10 +47,13 @@ ll G(string S)
     ll pos=0LL;
     string s="";
     ll ans=0LL;
+    ll target=0LL;
     while (pos<sz)
     {
         char ch=S[pos]; pos++;
-        if (ch=='+') {ans+=F(s);s="";}
+        if (ch=='f') target++;
+        else if (ch==')') target--;
+        if (ch=='+'&&target==0LL) {ans+=F(s);s="";}
         else s+=ch;
     }
     return ans+F(s);
@@ -61,10 +65,13 @@ ll T(string S)
     ll pos=0LL;
     string s="";
     ll ans=1LL;
+    ll target=0LL;
     while (pos<sz)
     {
         char ch=S[pos]; pos++;
-        if (ch=='*') {ans*=G(s);s="";}
+        if (ch=='f') target++;
+        else if (ch==')') target--;
+        if (ch=='*'&&target==0LL) {ans*=G(s);s="";}
         else s+=ch;
     }
     return ans*G(s);
