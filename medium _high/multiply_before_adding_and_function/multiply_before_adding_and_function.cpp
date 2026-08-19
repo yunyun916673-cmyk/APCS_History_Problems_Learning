@@ -16,7 +16,8 @@ ll F(string S)
     for (ll i=0LL;i<sz;i++)
         if (!isdigit(S[i])) tag=false;
     if (tag) return stoll(S);
-    S=S.substr(2LL,sz-3LL); sz-=3LL;
+    if (S[0LL]=='f')
+    {S=S.substr(2LL,sz-3LL);sz-=3LL;}
     ll pos=0LL;
     string s="";
     ll target=0LL;
