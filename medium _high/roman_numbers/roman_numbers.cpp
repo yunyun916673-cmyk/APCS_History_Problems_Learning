@@ -1,56 +1,28 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
+#include <map>
 using namespace std;
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     string S; cin>>S;
-    int sz=(int)S.size();
-    int pos=0; string ans="";
-    int base=0;
-    bool tag=false;
-    while (pos<sz)
+    int ans=0;
+    map<char,int> trans=
     {
-        char ch=S[pos]; pos++;
-        if (ch=='I')
-        {
-            if (pos>=sz||S[pos]=='I') {base++;}
-            else {tag=true;}
-        }
-        else if (ch=='M')
-        {
-            if (tag) {ans+='9';tag=false;}
-            else ans+='1';
-        }
-        else if (ch=='D')
-        {
-            if (tag) {ans+='4';tag=false;}
-            else ans+='5';
-        }
-        else if (ch=='C')
-        {
-            if (tag) {ans+='9';tag=false;}
-            else ans+='1';
-        }
-        else if (ch=='L')
-        {
-            if (tag) {ans+='4';tag=false;}
-            else ans+='5';
-        }
-        else if (ch=='X')
-        {
-            if (tag) {ans+='9';tag=false;}
-            else ans+='1';
-        }
-        else
-        {
-            if (tag) {ans+='4';tag=false;}
-            else ans+='5';
-        }
+        {'I',1},{'V',5},
+        {'X',10},{'L',50},
+        {'C',100},{'D',500},
+        {'M',1000}
+    };
+    int sz=(int)S.size();
+    for (int i=0;i<sz;i++)
+    {
+        char ch=S[i];
+        if (i+1<sz&&trans[ch]<trans[S[i+1]])
+        {ans-=trans[ch];}
+        else {ans+=trans[ch];}
     }
-    ans+=to_string(base);
-    cout<<stoi(ans);
+    cout<<ans;
     return 0;
 }
