@@ -18,8 +18,12 @@ void get_lines()
 }
 void dfs(string s)
 {
-    if ((ll)s.size()==L&&!lines.count(s))
-    {cout<<s;exit(0);}
+    if ((ll)s.size()==L)
+    {
+        if (!lines.count(s))
+        {cout<<s;exit(0);}
+        return;
+    }
     for (char ch:K) dfs(s+ch);
     return;
 }
