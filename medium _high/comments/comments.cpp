@@ -20,20 +20,13 @@ string get_str()
 }
 void dfs(ll dep)
 {
+    string stab=get_str();
+    temp[dep].push_back(stab);
+    ans=max(ans,dep);
     string s=get_str();
-    bool tag=false;
-    for (char ch:s)
-        if (isdigit(ch)) 
-        {tag=true;break;}
-    if (tag)
-    {
-        ll tsz=stoll(s);
-        if (tsz==0LL) return;
-        ans=max(ans,dep+1LL);
-        for (ll i=0LL;i<tsz;i++) dfs(dep+1LL);
-        return;
-    }
-    temp[dep].push_back(s);
+    ll tsz=stoll(s);
+    if (tsz==0LL) return;
+    for (ll i=0LL;i<tsz;i++) dfs(dep+1LL);
     return;
 }
 int main()
