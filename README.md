@@ -62,21 +62,6 @@
 
 每一道題目皆包含程式碼以及個人的解題紀錄。
 
-### 📂 目錄結構預覽
-```text
-📦 APCS_History_Problems_Learning
- ┣ 📂 簡單題
- ┃ ┣ 📂 2016-03-Q1_成績指標
- ┃ ┃ ┣ 📜 solution.cpp
- ┃ ┃ ┣ 📜 solution.py
- ┃ ┃ ┗ 📜 README.md (解題紀錄與心得)
- ┃ ┗ 📂 ...
- ┣ 📂 中等題
- ┃ ┗ 📂 ...
- ┣ 📂 中高難度題
- ┣ 📂 困難題
- ┗ 📜 README.md
-
 
 
 
