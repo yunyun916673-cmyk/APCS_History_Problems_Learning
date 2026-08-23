@@ -33,9 +33,9 @@ K<=100
  * 狀態更新：找到適合的港口後，將該港口舊的結束時間從 multiset 中刪除，並把當前飛船的結束時間（Right）新增進去，最後將成功停靠的計數器加一。
 ## 複雜度分析
 ### 時間複雜度：
-   對所有飛船區間進行排序需要 O(N \log N)。
-   接著遍歷 N 個區間，每次在大小為 K 的 multiset 內執行 upper_bound、erase 與 insert 的操作，單次為 O(\log K)，總共需要 O(N \log K)。
-   整體時間複雜度為 O(N \log N + N \log K)，能夠輕鬆通過 N=100,000 的大測資。
+   對所有飛船區間進行排序需要 O(N log N)。
+   接著遍歷 N 個區間，每次在大小為 K 的 multiset 內執行 upper_bound、erase 與 insert 的操作，單次為 O(log K)，總共需要 O(N log K)。
+   整體時間複雜度為 O(N log N + N log K)，能夠輕鬆通過 N=100,000 的大測資。
 ### 空間複雜度：
    需要一個大小為 N 的陣列來儲存區間，以及一個最大長度為 K 的 multiset 來維護機台狀態。整體空間複雜度為 O(N + K)。
 ## 學習心得
