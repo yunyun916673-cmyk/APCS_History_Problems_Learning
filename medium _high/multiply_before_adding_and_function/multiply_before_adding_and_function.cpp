@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 #include <string>
 #include <cctype>
 #include <algorithm>
@@ -8,79 +7,67 @@ using namespace std;
 ll T(string S);
 ll G(string S);
 ll F(string S);
-ll F(string S)
+ll T(string S)
 {
-    ll sz=(ll)S.size();
-    if (sz==0LL) return 0LL;
-    bool tag=true;
-    for (ll i=0LL;i<sz;i++)
-        if (!isdigit(S[i])) tag=false;
-    if (tag) return stoll(S);
-    if (S[0LL]=='f')
-    {S=S.substr(2LL,sz-3LL);sz-=3LL;}
-    ll pos=0LL;
+    ll ans=1LL;ll cnt=0LL;
     string s="";
-    ll target=0LL;
-    ll bigg=0LL,smll=1e18;
-    while (pos<sz)
+    for (char ch:S)
     {
-        char ch=S[pos]; pos++;
-        if (ch=='f') target++;
-        else if (ch==')') target--;
-        else if (ch==','&&target==0LL)
-        {
-            ll cur=T(s);s="";
-            bigg=max(bigg,cur);
-            smll=min(smll,cur);
-            continue;
-        }
+        if (cnt==0LL&&ch=='*')
+        {ans*=G(s);s="";continue;}
+        if (ch=='f') cnt++;
+        else if (ch==')') cnt--;
         s+=ch;
     }
-    ll cur=T(s);s="";
-    bigg=max(bigg,cur);
-    smll=min(smll,cur);
-    return bigg-smll;
+    return ans*G(s);
 }
 ll G(string S)
 {
-    ll sz=(ll)S.size();
-    if (sz==0LL) return 1LL;
-    ll pos=0LL;
+    ll ans=0LL;ll cnt=0LL;
     string s="";
-    ll ans=0LL;
-    ll target=0LL;
-    while (pos<sz)
+    for (char ch:S)
     {
-        char ch=S[pos]; pos++;
-        if (ch=='f') target++;
-        else if (ch==')') target--;
-        if (ch=='+'&&target==0LL) {ans+=F(s);s="";}
-        else s+=ch;
+        if (cnt==0LL&&ch=='+')
+        {ans+=F(s);s="";continue;}
+        if (ch=='f') cnt++;
+        else if (ch==')') cnt--;
+        s+=ch;
     }
     return ans+F(s);
 }
-ll T(string S)
+ll F(string S)
 {
-    ll sz=(ll)S.size();
-    if (sz==0LL) return 0LL;
-    ll pos=0LL;
+    bool tag=true;
+    for (char ch:S) 
+        if (!isdigit(ch))
+        {tag=false;break;}
+    if (tag) return stoll(S);
+    if (S[0LL]=='f')
+        S=S.substr(2LL,(ll)S.size()-3LL);
+    ll bb=0LL,ss=1e18,cnt=0LL;
     string s="";
-    ll ans=1LL;
-    ll target=0LL;
-    while (pos<sz)
+    for (char ch:S)
     {
-        char ch=S[pos]; pos++;
-        if (ch=='f') target++;
-        else if (ch==')') target--;
-        if (ch=='*'&&target==0LL) {ans*=G(s);s="";}
-        else s+=ch;
+        if (cnt==0LL&&ch==',')
+        {
+            ll cur=T(s);s="";
+            bb=max(bb,cur);
+            ss=min(ss,cur);
+            continue;
+        }
+        if (ch=='f') cnt++;
+        else if (ch==')') cnt--;
+        s+=ch;
     }
-    return ans*G(s);
+    ll cur=T(s);
+    bb=max(bb,cur);
+    ss=min(ss,cur);
+    return bb-ss;
 }
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    string L;cin>>L;
-    cout<<T(L); return 0;
+    string S;cin>>S;
+    cout<<T(S); return 0;
 }
