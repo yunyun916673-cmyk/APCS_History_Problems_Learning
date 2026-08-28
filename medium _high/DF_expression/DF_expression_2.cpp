@@ -1,25 +1,20 @@
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
-string s; int n;
-int pos=0; int sz;
+string S; int n,pos=0;
 int dfs(int level)
 {
-    char type=s[pos]; pos++;
-    if (type=='0') return 0;
-    else if (type=='1') return level;
-    level/=4;
-    int sum_=0;
-    for (int i=0;i<4;i++)
-        sum_+=dfs(level);
-    return sum_;
+    char ch=S[pos];pos++;
+    int ans=0;
+    if (ch=='2')
+        for (int i=0;i<4;i++)
+            ans+=dfs(level/4);
+    else if (ch=='1') ans=level;
+    return ans;
 }
 int main()
 {
     ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cin>>s>>n; sz=(int)s.size();
-    cout<<dfs(n*n);
-    return 0;
+    cin.tie(nullptr);cin>>S>>n;
+    cout<<dfs(n*n); return 0;
 }
