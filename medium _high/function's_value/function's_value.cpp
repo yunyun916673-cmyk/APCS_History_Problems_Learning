@@ -1,33 +1,42 @@
 #include <iostream>
-#include <sstream>
 #include <vector>
 #include <string>
-using ll=long long;
+#include <sstream>
 using namespace std;
-ll f(ll x){return 2LL*x-3LL;}
-ll g(ll x,ll y){return 2LL*x+y-7LL;}
-ll h(ll x,ll y,ll z){return 3LL*x-2LL*y+z;}
-vector<string> line;
-ll pos=0;
-ll dfs()
+vector<string> S;int pos=0,sz;
+int F(int x) {return 2*x-3;}
+int G(int x,int y) {return 2*x+y-7;}
+int H(int x,int y,int z) {return 3*x-2*y+z;}
+int dfs()
 {
-	string s=line[pos]; pos++;
-	if (s=="f")
-		return f(dfs());
-	else if (s=="g")
-		return g(dfs(),dfs());
-	else if (s=="h")
-		return h(dfs(),dfs(),dfs());
-	return stoll(s);
+    string s=S[pos]; pos++;
+    if (s=="f")
+    {
+        int x=dfs();
+        return F(x);
+    }
+    if (s=="g")
+    {
+        int x=dfs();
+        int y=dfs();
+        return G(x,y);
+    }
+    if (s=="h")
+    {
+        int x=dfs();
+        int y=dfs();
+        int z=dfs();
+        return H(x,y,z);
+    }
+    return stoi(s);
 }
 int main()
 {
-	ios::sync_with_stdio(false);
-	cin.tie(nullptr);
-	string org,s; getline(cin,org);
-	stringstream ss(org);
-	while (ss>>s)
-		line.push_back(s);
-	cout<<dfs();
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    string org,s; getline(cin,org);
+    stringstream ss(org);
+    while (ss>>s) S.push_back(s);
+    int sz=(int)S.size();
+    cout<<dfs(); return 0;
 }
