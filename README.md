@@ -1,7 +1,6 @@
 # APCS_History_Problems_Learning
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Algorithm](https://img.shields.io/badge/Algorithm-Data_Structure-brightgreen?style=for-the-badge)
 
 > 紀錄 APCS 歷屆試題的練習過程、解題思路，以及資料結構與演算法的學習歷程。
@@ -28,9 +27,6 @@
 - **資料結構與演算法基礎**
 - **分析問題與設計解法**
 - **APCS 歷屆題目練習，累積實際解題經驗**
-
-### 🐍 Python 解法
-為了替之後參加 CTF 比賽做準備，我開始學習 Python 的各種語法與應用，並逐漸將其熟悉、內化為自己的工具，因此也補上部分題目的 Python 解法。其中 Python 檔案中的解法，都是我重新實作並重新思考後得到的結果，會包含我重新思考題目後產生的新想法。
 
 ### 📚 學習內容包含：
 * 基礎程式設計
